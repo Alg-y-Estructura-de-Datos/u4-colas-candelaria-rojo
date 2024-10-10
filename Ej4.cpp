@@ -14,6 +14,7 @@ int sumaHastaN(Cola<int> &cola, int n) {
     int suma = 0;
     bool encontrado = false;
 
+    // Recorre la cola hasta encontrar el número n o hasta que la cola esté vacía
     while (!cola.esVacia()) {
         int dato = cola.desencolar();
         if (dato == n) {
@@ -23,15 +24,20 @@ int sumaHastaN(Cola<int> &cola, int n) {
         suma += dato;
         aux.encolar(dato);
     }
+
+    // Vuelve a encolar los elementos de la cola auxiliar en la cola original
     while (!aux.esVacia()) {
         cola.encolar(aux.desencolar());
     }
+
+    // Si se encontró el número n, devuelve la suma hasta ese punto, sino devuelve la suma total
     return encontrado ? suma : suma + n;
 }
 
 void imprimirCola(Cola<int> cola) {  // Se pasa la cola por valor para no modificarla
+    // Desencola y imprime los elementos de la cola
     while (!cola.esVacia()) {
-        cout << cola.desencolar() << " ";  // Desencola e imprime
+        cout << cola.desencolar() << " ";
     }
     cout << endl;
 }
@@ -40,17 +46,17 @@ int main() {
     Cola<int> cola;
     int numero;
 
-    cout<<"Ingrese numeros para la cola (ingrese 0 para terminar): " << endl;
+    cout << "Ingrese numeros para la cola (ingrese 0 para terminar): " << endl;
     int elem;
-    while (cin>>elem && elem!=0) {
+    while (cin >> elem && elem != 0) {
         cola.encolar(elem);
     }
 
-    cout<<"Ingrese el numero a buscar: ";
-    cin>>numero;
+    cout << "Ingrese el numero a buscar: ";
+    cin >> numero;
 
     cout << "Cola: ";
-    imprimirCola(cola); 
+    imprimirCola(cola);
 
-    cout<<"Suma: "<<sumaHastaN(cola, numero)<<endl; //CORREGIR
+    cout << "Suma: " << sumaHastaN(cola, numero) << endl;
 }

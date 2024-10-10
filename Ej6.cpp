@@ -8,8 +8,8 @@ pacientes de manera más detallada, como con nombres y números de teléfono.
 using namespace std;
 
 struct Paciente {
-    string nombre;
-    string telefono;
+    string nombre; // Nombre del paciente
+    string telefono; // Número de teléfono del paciente
 
     Paciente(const string& nombre = "", const string& telefono = "") : nombre(nombre), telefono(telefono) {}
 
@@ -18,10 +18,15 @@ struct Paciente {
     }
 };
 
+// Función para mostrar los pacientes en espera
 void mostrarPacientes(Cola<Paciente> &pacientes) {
     Cola<Paciente> aux;
 
     cout << "Pacientes en espera:" << endl;
+    if (pacientes.esVacia()) {
+        cout << "Error: La cola está vacía." << endl;
+        return;
+    }
     while (!pacientes.esVacia()) {
         Paciente paciente = pacientes.desencolar();
         paciente.mostrar();
@@ -33,6 +38,7 @@ void mostrarPacientes(Cola<Paciente> &pacientes) {
     }
 }
 
+// Función para agregar un nuevo paciente
 void agregarPaciente(Cola<Paciente> &pacientes) {
     string nombre, telefono;
 
@@ -46,6 +52,7 @@ void agregarPaciente(Cola<Paciente> &pacientes) {
     pacientes.encolar(Paciente(nombre, telefono));
 }
 
+// Función para atender al próximo paciente en espera
 void atenderPaciente(Cola<Paciente> &pacientes) {
     if (pacientes.esVacia()) {
         cout << "No hay pacientes en espera." << endl;
@@ -87,5 +94,5 @@ int main() {
                 cout << "Opcion invalida." << endl;
         }
     } while (opcion != 4);
-
+ 
 }

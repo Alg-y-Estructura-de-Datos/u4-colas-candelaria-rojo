@@ -11,16 +11,18 @@ void separarParesEImpares(Cola<int> &cola, Pila<int> &pila) {
 
     Cola<int> colaAux;
 
-  
+    // Separar los números pares en la colaAux y los impares en la pila
     while (!cola.esVacia()) {
         int dato = cola.desencolar();
 
         if (dato % 2 == 0) {
-            colaAux.encolar(dato); 
+            colaAux.encolar(dato); // Enqueue even numbers to colaAux
         } else {
-            pila.push(dato); 
+            pila.push(dato); // Push odd numbers to the stack
         }
     }
+
+    // Devolver los elementos de colaAux a la cola original
     while (!colaAux.esVacia()) {
         cola.encolar(colaAux.desencolar());
     }
@@ -29,6 +31,7 @@ void separarParesEImpares(Cola<int> &cola, Pila<int> &pila) {
 void mostrarCola(Cola<int> &cola) {
     Cola<int> colaAux;
 
+    // Mostrar los elementos de la cola y guardarlos en colaAux
     while (!cola.esVacia()) {
         int dato = cola.desencolar();
         cout << dato << " ";
@@ -36,6 +39,7 @@ void mostrarCola(Cola<int> &cola) {
     }
     cout << endl;
 
+    // Devolver los elementos de colaAux a la cola original
     while (!colaAux.esVacia()) {
         cola.encolar(colaAux.desencolar());
     }

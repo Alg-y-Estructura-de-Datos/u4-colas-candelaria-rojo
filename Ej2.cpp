@@ -6,14 +6,19 @@ desde la cola original.*/
 #include "Cola/Cola.h"
 using namespace std;
 
+// Función para eliminar elementos mayores a un límite dado de la cola
 void suprimirMayores(Cola<int> &cola, int n) {
     Cola<int> aux;
+
+    // Eliminar elementos de la cola original que sean menores o iguales al límite
     while (!cola.esVacia()) {
         int dato = cola.desencolar();
         if (dato <= n) {
             aux.encolar(dato);
         }
     }
+
+    // Mover los elementos de vuelta a la cola original
     while (!aux.esVacia()) {
         cola.encolar(aux.desencolar());
     }
